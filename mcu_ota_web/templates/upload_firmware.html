@@ -1,0 +1,78 @@
+<!-- upload_firmware.html -->
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    .upload-container {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: 2rem auto; /* Center the container */
+    }
+
+    h2 {
+        color: #6e8efb;
+        margin-bottom: 1.5rem;
+        text-align: center; /* Center the heading */
+    }
+
+    .form-label {
+        font-weight: bold; /* Make labels bold */
+        color: #555;
+    }
+
+    .form-control {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1rem;
+        width: 100%; /* Full width */
+        transition: border 0.3s; /* Smooth transition for border */
+    }
+
+    .form-control:focus {
+        border-color: #6e8efb; /* Change border color on focus */
+        outline: none; /* Remove default outline */
+    }
+
+    .btn {
+        background-color: #6e8efb; /* Button color */
+        color: white; /* Button text color */
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        font-size: 1rem;
+        cursor: pointer;
+        width: 100%; /* Full width */
+        transition: background-color 0.3s; /* Smooth transition for background */
+    }
+
+    .btn:hover {
+        background-color: #5a7bc8; /* Darker shade on hover */
+    }
+
+    @media (max-width: 600px) {
+        .upload-container {
+            padding: 1rem; /* Reduce padding on smaller screens */
+        }
+    }
+</style>
+{% endblock style %}
+
+{% block content %}
+    <h2>Upload Firmware</h2>
+    <form id="uploadForm" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="version" class="form-label">Firmware Version</label>
+            <input type="text" id="version" name="version" class="form-control" placeholder="Firmware Version" required>
+        </div>
+        <div class="mb-3">
+            <label for="file" class="form-label">Select Firmware File</label>
+            <input type="file" id="file" name="file" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload Firmware</button>
+    </form>
+{% endblock %}

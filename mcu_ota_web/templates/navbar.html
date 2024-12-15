@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #4a90e2;
+            color: #fff;
+        }
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #fff;
+        }
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        .navbar ul li a:hover {
+            color: #d1eaff;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                display: none;
+            }
+            .navbar ul.active {
+                display: flex;
+            }
+            .toggle-btn {
+                display: block;
+                cursor: pointer;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">MCU OTA</div>
+        <ul id="navbar-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'upload_firmware' %}">Upload Firmware</a></li> <!-- New Upload link -->
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'profile' %}">Profile</a></li> <!-- Profile link -->
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login_url' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Signup</a></li>
+            {% endif %}
+        </ul>
+        <div class="toggle-btn" onclick="toggleNavbar()">☰</div>
+    </nav>
+
+    <script>
+        function toggleNavbar() {
+            const navbarLinks = document.getElementById('navbar-links');
+            navbarLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

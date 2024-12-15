@@ -1,0 +1,28 @@
+.bodyall {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+    margin: 0;
+}
+.container {
+    background-color: #fff;
+    max-width: 500px;
+    width: 100%;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+h1 {
+    font-size: 2rem;
+    color: #6e8efb;
+    margin-bottom: 1rem;
+}
+p {
+    font-size: 1.2rem;
+    color: #555;
+}

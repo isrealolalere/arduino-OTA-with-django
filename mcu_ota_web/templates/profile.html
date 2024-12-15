@@ -1,0 +1,43 @@
+<!-- profile.html -->
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+.custom-container {
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #4a90e2;
+}
+
+h3 {
+    margin-top: 2rem;
+}
+</style>
+{% endblock style %}
+
+{% block content %}
+<div class="custom-container">
+    <h2>Profile</h2>
+    <p>Name: {{ user_name }}</p>
+    
+    <h3>Uploaded Firmware Files</h3>
+    {% if firmware_files %}
+        <ul>
+            {% for firmware in firmware_files %}
+                <li>
+                    {{ firmware.version }} - 
+                    File: <strong>{{ firmware.file_name }}</strong>
+                    <a href="{{ firmware.file.url }}" download>Download</a> <!-- Link to download the file -->
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No firmware files uploaded yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
